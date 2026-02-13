@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine</title>
+
+<style>
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #f8cdda, #f48fb1);
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.container {
+  position: relative;
+}
+
+button {
+  padding: 10px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 10px;
+  transition: 0.3s ease;
+}
+
+.yes-button {
+  background: #4caf50;
+  color: white;
+}
+
+.no-button {
+  background: #f44336;
+  color: white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="">
+        <h1>Will you be my Valentine? 💕</h1>
+    </div>
+  
+    <div class="">
+        <img src="https://media.tenor.com/4NhqI8XyoPwAAAAi/quby-hearts.gif">
+    </div>
+
+    <div class="">
+        <button class="yes-button" onclick="handleYesClick()">Yes 💚</button>
+        <button class="no-button" onclick="handleNoClick()">No 😢</button>
+    </div>
+  
+  
+</div>
+
+<script>
+
+let messageIndex = 0;
+
+const messages = [
+  "Are you sure? 😢",
+  "Really sure? 🥺",
+  "Think again 💔",
+  "Last chance 😭",
+  "Please? 🥹",
+  "Don’t do this 💘",
+  "You’ll regret it 😤",
+  "Say yes already 💞"
+];
+
+function handleNoClick() {
+  const noButton = document.querySelector('.no-button');
+  const yesButton = document.querySelector('.yes-button');
+
+  if (messageIndex < messages.length) {
+    noButton.innerText = messages[messageIndex];
+    messageIndex++;
+
+    // ขยายปุ่มเขียว
+    let currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
+    yesButton.style.fontSize = (currentSize + 5) + "px";
+
+    // ย่อปุ่มแดง
+    let noSize = parseFloat(window.getComputedStyle(noButton).fontSize);
+    noButton.style.fontSize = (noSize - 1) + "px";
+  } else {
+    // ข้อความหมดแล้ว → ซ่อนปุ่มแดง
+    noButton.style.transition = "0.4s";
+    noButton.style.opacity = "0";
+    
+    setTimeout(() => {
+      noButton.style.display = "none";
+    }, 400);
+  }
+}
+
+
+function handleYesClick() {
+  window.location.href = "yesPage.html";
+}
+
+</script>
+
+</body>
+</html>
